@@ -8,14 +8,22 @@ In biopharmaceutical manufacturing, every batch is expensive and quality must be
 
 ## Roadmap
 
-| Notebook | Content | Status |
-|---|---|---|
-| 01 | Load IndPenSim, sanity checks, first look at the 100 batches | Done |
-| 02 | Golden batch and batch trajectories by control strategy | Planned |
-| 03 | Multivariate statistical process monitoring: PCA, Hotelling T² and SPE (Q) charts on normal batches | Planned |
-| 04 | Fault detection on batches 91-100: detection rate, false alarm rate, detection delay | Planned |
-| 05 | Resilience tests: inject sensor bias, drift, frozen values and missing data, and measure how the monitor degrades | Planned |
-| 06 | Making it robust: robust scaling, sensor-fault isolation, ML-based monitoring and adaptive retraining | Planned |
+| Notebook | Content | Methods | Status |
+|---|---|---|---|
+| 01 | Load IndPenSim, sanity checks, first look at the 100 batches | Data validation, exploratory analysis | Done |
+| 02 | Golden batch and batch trajectories by control strategy; can the batch groups and fault types be found without labels? | Batch alignment, mean ± 3σ envelope, **K-means** | Planned |
+| 03 | Multivariate statistical process monitoring, trained on normal batches only | **PCA**, Hotelling T² and SPE (Q) charts, control limits | Planned |
+| 04 | Fault detection on batches 91-100 | Detection rate, false alarm rate, detection delay, alarm threshold trade-off | Planned |
+| 05 | Resilience tests: inject sensor bias, drift, frozen values and missing data, and measure how the monitor degrades | Fault injection, contribution plots for fault isolation | Planned |
+| 06 | Comparing detectors, including on fault types never seen in training; robustness to a change of control strategy | **PCA vs Isolation Forest vs Random Forest vs XGBoost**, grouped cross-validation by batch, robust scaling, adaptive retraining | Planned |
+| 07 (optional) | Soft sensor: predict penicillin from online sensors, and test its robustness to sensor faults | Random Forest regression | Optional |
+
+## Key findings so far
+
+- The raw file contains three labelling errors (swapped columns, a `Batch ID` and a `Fault flag` that are neither); the batch identifier is validated against the time resets at every load.
+- Batch duration and penicillin alone are not fault indicators: faulty batches stay within the normal duration range, and many fault-free batches also show a penicillin drop after ~150 h.
+- Faults are intermittent and start part-way through the batch, which makes detection delay a key metric.
+- APC-controlled batches are the most reproducible; recipe and operator batches split into two families.
 
 ## Data
 
