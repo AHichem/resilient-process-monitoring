@@ -23,15 +23,10 @@ In biopharmaceutical manufacturing, every batch is expensive and quality must be
 
 The data (about 2.5 GB) is not stored in this repository. Notebook 01 downloads it from Mendeley and caches a compact copy of the process variables in Google Drive.
 
-## How to run
-
-Open a notebook in Google Colab with the badge at the top of each notebook, then run all cells. No local installation is needed. To run locally: `pip install -r requirements.txt`.
 
 ## References
 
 - Goldrick S., Stefan A., Lovett D., Montague G., Lennox B. (2015). The development of an industrial-scale fed-batch fermentation simulation. *Journal of Biotechnology*, 193, 70-82.
 - Goldrick S., Duran-Villalobos C., Jankauskas K., Lovett D., Farid S. S., Lennox B. (2019). Modern day monitoring and control challenges outlined on an industrial-scale benchmark fermentation process. *Computers and Chemical Engineering*, 130, 106471.
 
-## Author
 
-Hichem, geophysicist and technical project manager, moving into data and process analytics.
