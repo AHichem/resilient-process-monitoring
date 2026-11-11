@@ -6,17 +6,20 @@ Monitoring models that still work when sensors drift, fail or go missing, built 
 
 In biopharmaceutical manufacturing, every batch is expensive and quality must be demonstrated, not assumed. Statistical process monitoring flags a batch that is drifting before it is lost. In a real plant, however, the monitoring model itself faces problems: sensors drift or freeze, values go missing, and operating conditions change. A model that raises false alarms or misses faults in those situations is not usable. This project studies how to build monitoring that stays reliable.
 
+It follows the three requirements of the hackathon challenge: monitoring models that **stay robust** (notebooks 03-05), **adapt to new conditions** (notebook 07) and **learn from limited data**, including with self-supervised learning (notebooks 06-07).
+
 ## Roadmap
 
 | Notebook | Content | Methods | Status |
 |---|---|---|---|
 | 01 | Load IndPenSim, sanity checks, first look at the 100 batches | Data validation, exploratory analysis | Done |
-| 02 | Golden batch and batch trajectories by control strategy; can the batch groups and fault types be found without labels? | Batch alignment, mean ± 3σ envelope, **K-means** | Planned |
+| 02 | Golden batch and batch trajectories by control strategy; can the batch groups be found without labels? | Batch alignment, mean ± 3σ envelope, **K-means** | In progress |
 | 03 | Multivariate statistical process monitoring, trained on normal batches only | **PCA**, Hotelling T² and SPE (Q) charts, control limits | Planned |
 | 04 | Fault detection on batches 91-100 | Detection rate, false alarm rate, detection delay, alarm threshold trade-off | Planned |
 | 05 | Resilience tests: inject sensor bias, drift, frozen values and missing data, and measure how the monitor degrades | Fault injection, contribution plots for fault isolation | Planned |
-| 06 | Comparing detectors, including on fault types never seen in training; robustness to a change of control strategy | **PCA vs Isolation Forest vs Random Forest vs XGBoost**, grouped cross-validation by batch, robust scaling, adaptive retraining | Planned |
-| 07 (optional) | Soft sensor: predict penicillin from online sensors, and test its robustness to sensor faults | Random Forest regression | Optional |
+| 06 | Learning "normal" without labels: self-supervised detectors compared with PCA and supervised models, including on fault types never seen in training | **Autoencoder** and **next-step forecasting** (self-supervised), **Isolation Forest**, **Random Forest**, grouped cross-validation by batch | Planned |
+| 07 | Adapting and learning from limited data: change of control strategy (train on recipe batches, test on APC batches), adaptive retraining, performance with 5, 10 and 30 normal training batches | Domain shift, moving-window retraining, learning curves | Planned |
+| 08 (optional) | XGBoost detector; soft sensor predicting penicillin from online sensors and its robustness to sensor faults | **XGBoost**, Random Forest regression | Optional |
 
 ## Key findings so far
 
