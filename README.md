@@ -2,8 +2,6 @@
 
 Monitoring models that still work when sensors drift, fail or go missing, built on 100 batches of a simulated 100,000 L penicillin fermentation (IndPenSim).
 
-> Work in progress. This project is my preparation for the STEM4Health Hackathon (Johnson & Johnson and the Swiss Data Science Center, ETH Zurich, November 2026), "Building resilient process monitoring models" track.
-
 ## Why this matters
 
 In biopharmaceutical manufacturing, every batch is expensive and quality must be demonstrated, not assumed. Statistical process monitoring flags a batch that is drifting before it is lost. In a real plant, however, the monitoring model itself faces problems: sensors drift or freeze, values go missing, and operating conditions change. A model that raises false alarms or misses faults in those situations is not usable. This project studies how to build monitoring that stays reliable.
