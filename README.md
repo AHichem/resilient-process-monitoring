@@ -13,7 +13,7 @@ It follows the three requirements of the hackathon challenge: monitoring models 
 | Notebook | Content | Methods | Status |
 |---|---|---|---|
 | 01 | Load IndPenSim, sanity checks, first look at the 100 batches | Data validation, exploratory analysis | Done |
-| 02 | Golden batch and batch trajectories by control strategy; can the batch groups be found without labels? | Batch alignment, mean ± 3σ envelope, **K-means** | In progress |
+| 02 | Golden batch (global and per control strategy); golden batch vs a first ML detector on false alarms; can the 3 control strategies be found without labels? | Batch alignment, mean ± 3σ envelope, **Isolation Forest**, **K-means** | Done |
 | 03 | Multivariate statistical process monitoring, trained on normal batches only | **PCA**, Hotelling T² and SPE (Q) charts, control limits | Planned |
 | 04 | Fault detection on batches 91-100 | Detection rate, false alarm rate, detection delay, alarm threshold trade-off | Planned |
 | 05 | Resilience tests: inject sensor bias, drift, frozen values and missing data, and measure how the monitor degrades | Fault injection, contribution plots for fault isolation | Planned |
@@ -27,6 +27,10 @@ It follows the three requirements of the hackathon challenge: monitoring models 
 - Batch duration and penicillin alone are not fault indicators: faulty batches stay within the normal duration range, and many fault-free batches also show a penicillin drop after ~150 h.
 - Faults are intermittent and start part-way through the batch, which makes detection delay a key metric.
 - APC-controlled batches are the most reproducible; recipe and operator batches split into two families.
+- The golden batch envelope is wide, and faulty batches can stay inside it. Splitting it by control strategy barely helps: the three strategies follow almost the same mean trajectory.
+- Used as a monitor (one variable at a time), the golden batch raises a false alarm on all 30 normal test batches (15.5 % of the points).
+- A first Isolation Forest cuts false alarms to 1 %, but barely detects the faults (2 % of points in alarm on faulty batches): it judges each point alone and ignores time.
+- K-means with k = 3 does not recover the three control strategies from batch-level summaries.
 
 ## Data
 
